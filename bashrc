@@ -147,7 +147,7 @@ alias whist='tail -1 ~/.bash_history >> ~/COMMANDS.history && tail -1 ~/COMMANDS
 export EDITOR='vim'
 export VISUAL='vim'
 ### ВИШЕНКА на торте (если вы не понимаете что происходит в командной строке, то удалите это)
-set -o vi
+### set -o vi
 
 alias glog='git log --oneline --decorate --graph --all'
 export TERM=xterm-256color
