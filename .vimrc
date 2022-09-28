@@ -172,6 +172,8 @@ set viminfo='1000,f1,:1000,/1000
 
 " Make backspace delete lots of things
 set backspace=indent,eol,start
+
+" Nice and useful cursor
 set cursorline
 set cursorcolumn
 hi cursorline ctermbg=darkgrey
