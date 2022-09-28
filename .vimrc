@@ -65,6 +65,7 @@ map Т N
 map Ь M
 map Б <
 map Ю >
+
 set wildmenu
 set wcm=<Tab>
 
@@ -78,12 +79,16 @@ set wcm=<Tab>
 " Ctrl+w= окна одинакового размера (вертикальные, после открытия закрытия файлового меню
 " gt = next Tab gT = previous Tab
 
-autocmd vimenter * NERDTree
+autocmd vimenter * NERDTree | wincmd p
 " автоматически закроет nerdtree если закрыть файл (выход из вима)
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden = 1
 " включение выключение:
-map <C-f> :NERDTreeToggle<CR>
+map <C-f> :NERDTreeFind<CR>
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
+" быстрый переход в find из редактирования - "\v"
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 set relativenumber
 
@@ -98,8 +103,10 @@ set tabstop     =4
 set softtabstop =4
 set shiftwidth  =4
 set expandtab
+
+" Такое себе... странное...
 " set smarttab
-set background=dark
+
 set paste
 set wrap
 set showmatch
@@ -110,16 +117,16 @@ set lz
 set list
 set listchars=tab:→\
 
-" включаем мышь. если не будет копировать текс из вима куданить, то попробовать set mouse=r
-set mouse=a
-
+" включаем мышь. если не будет копировать текс из вима куданить, или будет глючить, то попробовать set mouse=a (не работает в iterm2)
+set mouse=r
 
 syntax on
 set scrolloff=9
 
+" вкусовщина. проверить спецсимволы можно и cat -vte file
 " set listchars=tab:»\ ,trail:·,eol:¶
 
-" Настроим бэкап
+" Настроим бэкап - наше всё
 set backup
 set backupdir=~/.vim/backup//
 set writebackup
@@ -135,7 +142,9 @@ set viminfo='1000,f1,:1000,/1000
 set backspace=indent,eol,start
 
 " Nice and useful cursor. Красивое...
-colorscheme torte
+" тема тоже на любителя
+" colorscheme torte
+set background=dark
 set cursorline
 set cursorcolumn
 hi cursorline ctermbg=darkgrey
