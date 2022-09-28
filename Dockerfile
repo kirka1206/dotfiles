@@ -21,11 +21,11 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 #Software
 RUN yes | unminimize
 
-ARG software="curl python3 pip nginx vim python3-dev python3-pip libssl-dev \
+ARG software="build-essential openssl libssh2-1-dev curl python3 pip nginx vim python3-dev python3-pip libssl-dev \
               libffi-dev libblas3 libc6 liblapack3 netcat \
               wget htop ansible jq nmap packer rsync ssh screen tmux sshpass tldr \
-              iperf3 openconnect man-db tree mc \
-              inetutils-ping ftp net-tools dnsutils telnet cython3 wget2"
+              iperf3 openconnect man-db tree mc cron \
+              iputils-ping ftp net-tools dnsutils bind9utils telnet cython3 wget2 locate"
 
 RUN set -ex && \
     apt-get update -y && \
@@ -35,7 +35,10 @@ RUN set -ex && \
 RUN set -ex && \
     ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log
+    
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
+RUN updatedb
 
 WORKDIR /root
 RUN  wget -O - https://raw.githubusercontent.com/kirka1206/dotfiles/main/runme.sh | bash
