@@ -70,6 +70,9 @@ set wildmenu
 set wcm=<Tab>
 
 " Настройки NerdTree (переключение между панелями - Ctrl-w w ,если чо :)
+" git и vim ниже надо запустить что бы nerdtree работал, или скачать runme.sh из моей репы
+" git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
+" vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
 " Ctrl+ww cycle though all windows
 " Ctrl+wh takes you left a window
 " Ctrl+wj takes you down a window
