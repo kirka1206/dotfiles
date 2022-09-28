@@ -1,3 +1,4 @@
+" Let the russian ABC works in command mode (no need to switch to EN
 map ё `
 map й q
 map ц w
