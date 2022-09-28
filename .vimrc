@@ -1,4 +1,13 @@
 " Let the Russian ABC works in command mode (no need to switch to EN layout)
+" мапинг можно вынести в отдельный файл и загружать командой source ~/.vim/bindings-ru.vim из этого файла
+map йй qq
+map цй wq
+map й! q!
+map ЯЯ ZZ
+map яя zz
+map яи zb
+map пж g;
+map пп gg
 map ё `
 map й q
 map ц w
