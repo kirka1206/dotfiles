@@ -109,6 +109,10 @@ set lz
 set list
 set listchars=tab:→\
 
+" включаем мышь. если не будет копировать текс из вима куданить, то попробовать set mouse=r
+set mouse=a
+
+
 syntax on
 set scrolloff=9
 
@@ -130,6 +134,7 @@ set viminfo='1000,f1,:1000,/1000
 set backspace=indent,eol,start
 
 " Nice and useful cursor. Красивое...
+colorscheme torte
 set cursorline
 set cursorcolumn
 hi cursorline ctermbg=darkgrey
