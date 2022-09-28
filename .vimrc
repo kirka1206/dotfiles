@@ -156,7 +156,7 @@ set list
 set listchars=tab:→\
 
 syntax on
-set scrolloff=3
+set scrolloff=9
 
 " set listchars=tab:»\ ,trail:·,eol:¶
 
@@ -172,4 +172,5 @@ set viminfo='1000,f1,:1000,/1000
 
 " Make backspace delete lots of things
 set backspace=indent,eol,start
-set cursorline
+set cursorline ctermbg=darkgrey
+set cursorcolumn ctermbg=darkgrey
