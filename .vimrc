@@ -75,6 +75,7 @@ set wcm=<Tab>
 " Ctrl+wk takes you up a window
 " Ctrl+wl takes you right a window
 " Ctrl+wp между панелями
+" Ctrl+w= окна одинакового размера (вертикальные, после открытия закрытия файлового меню
 " gt = next Tab gT = previous Tab
 
 autocmd vimenter * NERDTree
