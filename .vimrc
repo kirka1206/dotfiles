@@ -6,11 +6,11 @@
 " Donation: :)
 " ReadMe: README.md
 " Last_modify: 2022-07-07
-" Desc: simple vim config for server.
+" Desc: simple vim config
 "==========================================
 
 " Let the Russian ABC works in command mode (no need to switch to EN layout)
-" мапинг можно вынести в отдельный файл и загружать командой source ~/.vim/bindings-ru.vim из этого файла
+" мапинг можно вынести в отдельный файл и загружать командой source ~/.vim/bindingsRU.vim из этого файла
 " работает только в окне редактора, но не в в режиме ввода команд (:).
 map ЯЯ ZZ
 map ё `
@@ -83,9 +83,10 @@ map Ю >
 " Кодировка текста по умолчанию
 set termencoding=utf-8 
 
-" Настройка меню В процессе разработки
+" Настройка меню. В процессе разработки
 set wildmenu
 set wcm=<Tab>
+
 " ********** NerdTree Start
 " Настройки NerdTree (переключение между панелями - Ctrl-w w ,если чо :)
 " git и vim ниже надо запустить что бы nerdtree работал, или скачать runme.sh из моей репы
@@ -97,8 +98,9 @@ set wcm=<Tab>
 "" Ctrl+wk takes you up a window
 "" Ctrl+wl takes you right a window
 "" Ctrl+wp между панелями
-"" Ctrl+w= окна одинакового размера (вертикальные, после открытия закрытия файлового меню
+"" Ctrl+w= окна одинакового размера (вертикальные, после открытия-закрытия файлового меню)
 "" gt = next Tab gT = previous Tab
+""" там ещё "?" нажать можно для справки :)
 
 " Запуск NerdTree при старте vim
 autocmd vimenter * NERDTree | wincmd p
@@ -177,15 +179,11 @@ hi cursorcolumn ctermbg=darkgrey
 nnoremap H ^
 nnoremap L $
 nnoremap ; :
-
-" select all
+"" select all
 map <Leader>sa ggVG"
-
-" выключить подсветку после поиска
+"" выключить подсветку после поиска
 noremap <silent><leader>/ :nohls<C
-
-" undo по shift u
+"" undo по shift u
 nnoremap U <C-r>
-
-" когда я тормоз
+"" когда я тормоз
 cmap w!! w !sudo tee >/dev/null %
