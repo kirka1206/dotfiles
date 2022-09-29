@@ -119,6 +119,26 @@ let NERDTreeQuitOnOpen = 1
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 " ********** NerdTree END
 
+" **********
+" Если не хочется использовать NerdTree, то можно воспользоваться возможностями встроенного в поставку vim фалового плагина
+" netrw (но он довольно глючный). 
+" :Explore - opens netrw in the current window
+" :Sexplore - opens netrw in a horizontal split (можно использвать команду :Sex  :))) 
+" :Vexplore - opens netrw in a vertical split
+" для быстрого открытия  netrw по Ctrl-f сделать ремапинг:
+" map <C-f> :Explore<CR>
+" для смены вида фаловой панели по нажатии на "i":
+" let g:netrw_liststyle = 3
+" баннер вверху с подсказкой
+" let g:netrw_banner = 1
+" где открывать? 
+" 1 - open files in a new horizontal split
+" 2 - open files in a new vertical split
+" 3 - open files in a new tab
+" 4 - open in previous window
+" let g:netrw_browse_split = 3
+" **********
+
 set relativenumber
 set scrolloff=9
 
