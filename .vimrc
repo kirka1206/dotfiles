@@ -175,5 +175,6 @@ noremap <silent><leader>/ :nohls<C
 " undo по shift u
 nnoremap U <C-r>
 
+
 " когда я тормоз
 cmap w!! w !sudo tee >/dev/null %
