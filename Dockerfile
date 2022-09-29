@@ -42,5 +42,5 @@ RUN updatedb
 
 WORKDIR /root
 RUN  wget -O - https://raw.githubusercontent.com/kirka1206/dotfiles/main/runme.sh | bash
-RUN git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
-RUN vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
+#RUN git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
+#RUN vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
