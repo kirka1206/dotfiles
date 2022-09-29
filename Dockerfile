@@ -24,7 +24,7 @@ RUN yes | unminimize
 ARG software="build-essential openssl libssh2-1-dev curl python3 pip nginx vim python3-dev python3-pip libssl-dev \
               libffi-dev libblas3 libc6 liblapack3 netcat \
               wget htop ansible jq nmap packer rsync ssh screen tmux sshpass tldr \
-              iperf3 openconnect man-db tree mc cron \
+              iperf3 openconnect man-db tree mc cron libncurses5-dev libncursesw5-dev \
               iputils-ping ftp net-tools dnsutils bind9utils telnet cython3 wget2 locate"
 
 RUN set -ex && \
