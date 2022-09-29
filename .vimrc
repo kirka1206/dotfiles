@@ -161,3 +161,19 @@ set cursorline
 set cursorcolumn
 hi cursorline ctermbg=darkgrey
 hi cursorcolumn ctermbg=darkgrey
+" немного полезного ремапинга
+nnoremap H ^
+nnoremap L $
+nnoremap ; :
+
+" select all
+map <Leader>sa ggVG"
+
+" выключить подсветку после поиска
+noremap <silent><leader>/ :nohls<C
+
+" undo по shift u
+nnoremap U <C-r>
+
+" когда я тормоз
+cmap w!! w !sudo tee >/dev/null %
