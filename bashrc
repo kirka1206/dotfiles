@@ -72,39 +72,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -115,17 +82,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-### --begin some git aliases
-### https://opensource.com/article/20/11/git-aliases
-git config --global alias.st 'status -sb'
-git config --global alias.ll 'log --oneline'
-git config --global alias.last 'log -1 HEAD --stat'
-git config --global alias.cm 'commit -m'
-git config --global alias.d 'diff'
-git config --global alias.dv 'difftool -t vimdiff -y'
-git config --global alias.gl 'config --global -l'
-git config --global alias.se '!git rev-list --all | xargs git grep -F'
 
 export PS1="\n\u@\h: \w ?\$?\n\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/') >\[$(tput sgr0)\]"
 
@@ -143,11 +99,85 @@ export IGNOREEOF=1
 #export PS1="\u@\h: \w \\$> \[$(tput sgr0)\]"
 #export PS1="\n\u@\h: \w ?\$?\n=>> "
 #### Lets make some usefull staff ---END
-alias whist='tail -1 ~/.bash_history >> ~/COMMANDS.history && tail -1 ~/COMMANDS.history'
+
 export EDITOR='vim'
 export VISUAL='vim'
-
-alias glog='git log --oneline --decorate --graph --all'
 export TERM=xterm-256color
-alias lssh='cat ~/.ssh/config'
 
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+alias whist='tail -1 ~/.bash_history >> ~/COMMANDS.history && tail -1 ~/COMMANDS.history'
+alias glog='git log --oneline --decorate --graph --all'
+alias lssh='cat ~/.ssh/config'
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias diskspace_report="df -P -kHl"
+alias free_diskspace_report="diskspace_report"
+alias v="vim"
+alias ungz="gunzip -k"
+alias hosts='sudo $EDITOR /etc/hosts' 
+
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+### --begin some git aliases
+### https://opensource.com/article/20/11/git-aliases
+git config --global alias.st 'status -sb'
+git config --global alias.ll 'log --oneline'
+git config --global alias.last 'log -1 HEAD --stat'
+git config --global alias.cm 'commit -m'
+git config --global alias.d 'diff'
+git config --global alias.dv 'difftool -t vimdiff -y'
+git config --global alias.gl 'config --global -l'
+git config --global alias.se '!git rev-list --all | xargs git grep -F'
+# Undo a `git push`
+alias undopush="git push -f origin HEAD^:master"
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Easier navigation: .., ..., ~ and -
+alias ..="cd .."
+alias cd..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+# mv, rm, cp
+alias mv='mv -v'
+alias rm='rm -i -v'
+alias cp='cp -v'
+
+alias chmox='chmod -x'
+
+alias where=which # sometimes i forget
+alias brwe=brew  #typos
+
+alias hosts='sudo $EDITOR /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.com ;)
+
+# Networking. IP address, dig, DNS
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+# alias dig="dig +nocmd any +multiline +noall +answer"
