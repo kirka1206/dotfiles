@@ -1,3 +1,18 @@
+"==========================================
+" ProjectLink: https://github.com/kirka1206/dotfiles/
+" Author:  kirka1206
+" Version: 00/007
+" Email: kirillspa gmail com
+" Donation: :)
+" ReadMe: README.md
+" Last_modify: 2022-07-07
+" Desc: simple vim config
+"==========================================
+
+" Let the Russian ABC works in command mode (no need to switch to EN layout)
+" мапинг можно вынести в отдельный файл и загружать командой source ~/.vim/bindingsRU.vim из этого файла
+" работает только в окне редактора, но не в в режиме ввода команд (:).
+map ЯЯ ZZ
 map ё `
 map й q
 map ц w
@@ -64,87 +79,80 @@ map Т N
 map Ь M
 map Б <
 map Ю >
+
+" Кодировка текста по умолчанию
+set termencoding=utf-8 
+
+" Настройка меню. В процессе разработки
 set wildmenu
 set wcm=<Tab>
 
-" проверка орфографии:
-menu SetSpell.ru  :set spl=ru spell<CR>
-menu SetSpell.en  :set spl=en spell<CR>
-menu SetSpell.off :set nospell<CR>
-map <F7> :emenu SetSpell.<Tab>
-" выбор альтернатив:
-imap <F8> <Esc> z=<CR>i
-map <F8> z=<CR>
-" настройка строки статуса
-set laststatus=2   " всегда показывать строку статуса
-set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\ hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
-"" подключаем переводчик по F9
-"function! TranslateWord()
-"   let s:dict    = "$HOME/dict/mueller-base.sh"
-"   let s:phrase  = expand("<cword>")
-"   let s:tmpfile = tempname()
-"   silent execute "!" . s:dict . " " . s:phrase . " > " . s:tmpfile
-"   execute "botright sp " . s:tmpfile
-"endfunction
-"map <F9> :call TranslateWord()<CR>
+" ********** NerdTree Start
+" Настройки NerdTree (переключение между панелями - Ctrl-w w ,если чо :)
+" git и vim ниже надо запустить что бы nerdtree работал, или скачать runme.sh из моей репы
+" git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
+" vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
+"" Ctrl+ww cycle though all windows
+"" Ctrl+wh takes you left a window
+"" Ctrl+wj takes you down a window
+"" Ctrl+wk takes you up a window
+"" Ctrl+wl takes you right a window
+"" Ctrl+wp между панелями
+"" Ctrl+w= окна одинакового размера (вертикальные, после открытия-закрытия файлового меню)
+"" gt = next Tab gT = previous Tab
+""" там ещё "?" нажать можно для справки :)
 
-" call plug#begin()
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
-
-" Make sure you use single quotes
-
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-" Plug 'junegunn/vim-easy-align'
-
-" Any valid git URL is allowed
-" Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
-" Multiple Plug commands can be written in a single line using | separators
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-" On-demand loading
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
-" Using a non-default branch
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-" Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-" Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-" Unmanaged plugin (manually installed and updated)
-" Plug '~/my-prototype-plugin'
-
-" Initialize plugin system
-" call plug#end()
+" Запуск NerdTree при старте vim
+autocmd vimenter * NERDTree | wincmd p
+" автоматически закроет nerdtree если закрыть файл (выход из вима)
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" показывать dot файлы
+let NERDTreeShowHidden = 1
+" включение выключение:
+"" окно поиска
+map <C-f> :NERDTreeFind<CR>
+"" окно фалового менеджера
 map <C-n> :NERDTreeToggle<CR>
+" закрыть файловый менеджер при открытии файла
+let NERDTreeQuitOnOpen = 1
+" быстрый переход в find из редактирования - "\v"
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+" ********** NerdTree END
+
+" **********
+" Если не хочется использовать NerdTree, то можно воспользоваться возможностями встроенного в поставку vim фалового плагина
+" netrw (но он довольно глючный). 
+" :Explore - opens netrw in the current window
+" :Sexplore - opens netrw in a horizontal split (можно использвать команду :Sex  :))) 
+" :Vexplore - opens netrw in a vertical split
+" для быстрого открытия  netrw по Ctrl-f сделать ремапинг:
+" map <C-f> :Explore<CR>
+" для смены вида фаловой панели по нажатии на "i":
+" let g:netrw_liststyle = 3
+" баннер вверху с подсказкой
+" let g:netrw_banner = 1
+" где открывать? 
+" 1 - open files in a new horizontal split
+" 2 - open files in a new vertical split
+" 3 - open files in a new tab
+" 4 - open in previous window
+" let g:netrw_browse_split = 3
+" **********
+
 set relativenumber
+set scrolloff=9
 
-" To control the number of space characters that will be inserted when the tab key is pressed, set the 'tabstop' option. For example, to insert 4 spaces for a tab, use:
 set tabstop=4
-" To change the number of space characters inserted for indentation, use the 'shiftwidth' option:
 set shiftwidth=4
-
 " To insert space characters whenever the tab key is pressed, set the 'expandtab' option:
-
 set tabstop     =4
 set softtabstop =4
 set shiftwidth  =4
 set expandtab
+
+" Такое себе... странное...
 " set smarttab
-set background=dark
+
 set paste
 set wrap
 set showmatch
@@ -155,16 +163,21 @@ set lz
 set list
 set listchars=tab:→\
 
-syntax on
-set scrolloff=3
+" включаем мышь. если не будет копировать текст из вима куданить, или будет глючить, то попробовать set mouse=a (не работает в iterm2)
+set mouse=r
 
+syntax on
+
+" вкусовщина. проверить спецсимволы можно и cat -vte file
 " set listchars=tab:»\ ,trail:·,eol:¶
 
+" Настроим бэкап - наше всё
 set backup
 set backupdir=~/.vim/backup//
 set writebackup
 set backupcopy=yes
 au BufWritePre * let &bex = '@' . strftime("%F.%H:%M")
+
 set nocompatible
 
 " Enable a nice big viminfo file
@@ -172,4 +185,25 @@ set viminfo='1000,f1,:1000,/1000
 
 " Make backspace delete lots of things
 set backspace=indent,eol,start
+
+" Nice and useful cursor. Красивое...
+" тема тоже на любителя
+" colorscheme torte
+set background=dark
 set cursorline
+set cursorcolumn
+hi cursorline ctermbg=darkgrey
+hi cursorcolumn ctermbg=darkgrey
+
+" немного полезного ремапинга
+nnoremap H ^
+nnoremap L $
+nnoremap ; :
+"" select all
+map <Leader>sa ggVG"
+"" выключить подсветку после поиска
+noremap <silent><leader>/ :nohls<C
+"" undo по shift u
+nnoremap U <C-r>
+"" когда я тормоз
+cmap w!! w !sudo tee >/dev/null %

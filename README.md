@@ -1,2 +1,2 @@
-# dotfiles
-Dot files for linux
+# (.)Dotfiles
+Dot and some config files for linux and docker
